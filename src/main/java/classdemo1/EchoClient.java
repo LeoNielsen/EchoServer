@@ -6,7 +6,35 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class EchoClient {
-    public static void main(String[] args) {
+
+    Socket client;
+    PrintWriter pw;
+    Scanner scanner;
+
+    public void connect(String address, int port) throws IOException {
+        client = new Socket(address,port);
+        pw = new PrintWriter(client.getOutputStream(), true);
+        scanner = new Scanner(client.getInputStream());
+        System.out.println(scanner.nextLine());
+
+        Scanner keyboard = new Scanner(System.in);
+        boolean keepRunning = true;
+        while (keepRunning){
+            String msgToSend = keyboard.nextLine(); //Blocking Call
+            pw.println(msgToSend);
+            System.out.println(scanner.nextLine());
+            if (msgToSend.equals("stop")){
+                keepRunning = false;
+            }
+        }
+        client.close();
+    }
+
+    public static void main(String[] args) throws IOException {
+
+        new EchoClient().connect("localhost",2345);
+
+
 
     }
 }

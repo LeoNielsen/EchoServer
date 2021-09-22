@@ -8,6 +8,7 @@ public class FileReadWrite {
 
     public static void outputStreamTester() throws IOException {
         DataOutputStream dataOut = new DataOutputStream(new FileOutputStream("file.bin"));
+
         dataOut.writeUTF("Hello World");
         dataOut.writeInt(100);
         dataOut.writeDouble(345.45);
@@ -27,16 +28,16 @@ public class FileReadWrite {
         pw.println(345.45);
         pw.close();
 
-//        Scanner reader = new Scanner(new FileInputStream(("file.txt")));
-//        System.out.println(reader.nextLine());
-//        System.out.println(reader.nextLine());
-//        System.out.println(reader.nextLine());
-//        reader.close();
+        Scanner reader = new Scanner(new FileInputStream(("file.txt")));
+        System.out.println(reader.nextLine());
+        System.out.println(reader.nextLine());
+        System.out.println(reader.nextLine());
+        reader.close();
     }
 
     public static void main(String[] args) throws IOException {
-        //outputStreamTester();
-        //writerStreamTester();
+//        outputStreamTester();
+        writerStreamTester();
 
     }
 
