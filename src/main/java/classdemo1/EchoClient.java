@@ -23,10 +23,11 @@ public class EchoClient {
             String msgToSend = keyboard.nextLine(); //Blocking Call
             pw.println(msgToSend);
             System.out.println(scanner.nextLine());
-            if (msgToSend.equals("stop")){
+            if (msgToSend.equals("CLOSE#")){
                 keepRunning = false;
             }
         }
+        pw.println("CLOSE#");
         client.close();
     }
 
