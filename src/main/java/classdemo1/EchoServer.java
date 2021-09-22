@@ -30,6 +30,8 @@ public class EchoServer {
 
     private void startServer(int port) throws IOException {
         BlockingQueue<String> messages = new ArrayBlockingQueue<String>(10);
+        Quiz quiz = new Quiz();
+        quiz.makeQuestions();
 
         CopyOnWriteArrayList<ClientHandler> clients = new CopyOnWriteArrayList<>();
 
@@ -44,7 +46,7 @@ public class EchoServer {
 
         while (true) {
             Socket client = serverSocket.accept(); //Blocking call
-            ClientHandler cl = new ClientHandler(client, messages);
+            ClientHandler cl = new ClientHandler(client, messages, quiz);
             executorService.execute(cl);
 
             clients.add(cl);
